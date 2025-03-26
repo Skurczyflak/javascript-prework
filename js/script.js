@@ -3,6 +3,7 @@
 function playGame(playerInput){
 
     clearMessages();
+    let whoWon = 0;
 
     function getMoveName(argMoveId){
             if(argMoveId == 1){
@@ -22,22 +23,31 @@ function playGame(playerInput){
         
         if( argComputerMove == 'kamień' && argPlayerMove == 'papier'){
             printMessage('Ty wygrywasz!');
+            return 1;
             }else if( argComputerMove == 'papier' && argPlayerMove == 'nożyce'){
             printMessage('Ty wygrywasz!');
+            return 1;
             }else if( argComputerMove == 'nożyce' && argPlayerMove == 'kamień'){
             printMessage('Ty wygrywasz!');
+            return 1;
             }else if( argComputerMove == 'papier' && argPlayerMove == 'kamień'){
             printMessage('Komputer wygrywa!');
+            return 2;
             }else if( argComputerMove == 'nożyce' && argPlayerMove == 'papier'){
             printMessage('Komputer wygrywa!');
+            return 2;
             }else if( argComputerMove == 'kamień' && argPlayerMove == 'nożyce'){
             printMessage('Komputer wygrywa!');
+            return 2;
             }else if(argComputerMove == 'kamień' && argPlayerMove == 'kamień'){
             printMessage('Remis');
+            return 0;
             }else if(argComputerMove == 'papier' && argPlayerMove == 'papier'){
             printMessage('Remis');
+            return 0;
             }else if(argComputerMove == 'nożyce' && argPlayerMove == 'nożyce'){
             printMessage('Remis');
+            return 0;
             }else if(argPlayerMove == 'nieznany ruch'){
             printMessage('Niepoprawny ruch wybierz pomiędzy 1: kamień, 2: papier, 3: nożyce.');
             }
@@ -60,19 +70,39 @@ function playGame(playerInput){
     let playerMove = getMoveName(playerInput);
 
     //Wynik
-
-    displayResult(computerMove, playerMove);
+    whoWon = displayResult(computerMove, playerMove);
+    console.log(whoWon);
+    return whoWon;
 
 }
 
+let playerScore = 0;
+let computerScore = 0;
+
+function scoreResult(argResult) {
+    console.log(argResult);
+    let playerPath = document.getElementById("player-score");
+    let computerPath = document.getElementById("computer-score");
+
+    if(argResult == 1){
+        playerScore += 1;
+        playerPath.innerText = playerScore;
+    }else if(argResult == 2){
+        computerScore += 1;
+        computerPath.innerText = computerScore;
+    }
+}
+
 document.getElementById('play-rock').addEventListener('click', function(){
-    playGame(1);
+    scoreResult(playGame(1));
   });
 
   document.getElementById('play-paper').addEventListener('click', function(){
-    playGame(2);
+    scoreResult(playGame(2));
   });
 
   document.getElementById('play-scissors').addEventListener('click', function(){
-    playGame(3);
+    scoreResult(playGame(3));
   });
+
+  
