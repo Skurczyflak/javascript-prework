@@ -1,10 +1,10 @@
 //Functions
 {
-    function playGame(playerInput){
+    const playGame = function (playerInput){
 
         clearMessages();
 
-        function getMoveName(argMoveId){
+        const getMoveName = function (argMoveId){
                 if(argMoveId == 1){
                     return 'kamień';
                 } else if (argMoveId == 2){
@@ -17,7 +17,7 @@
                 }
             }
 
-        function displayResult(argComputerMove, argPlayerMove){
+        const displayResult = function (argComputerMove, argPlayerMove){
             printMessage('Zagrałem ' + argComputerMove + ', a Ty ' + argPlayerMove);
             
             if (argComputerMove == 'kamień' && argPlayerMove == 'papier'){
@@ -55,20 +55,20 @@
 
         //Computer Move
 
-        let randomNumber = Math.floor(Math.random() * 3 + 1);
-        let computerMove = getMoveName(randomNumber);
+        const randomNumber = Math.floor(Math.random() * 3 + 1);
+        const computerMove = getMoveName(randomNumber);
 
         //Player Move
-        let playerMove = getMoveName(playerInput);
+        const playerMove = getMoveName(playerInput);
 
         //Result
-        let winner = displayResult(computerMove, playerMove);
-        
+        const winner = displayResult(computerMove, playerMove);
+
         return winner;
 
     }
 
-    function scoreResult(argResult) {
+    const scoreResult = function (argResult) {
         if (argResult == 1){
             playerScore += 1;
             playerPath.innerText = playerScore;
